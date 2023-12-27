@@ -40,6 +40,15 @@ Run ```main.py``` and choose the input method when prompted
 python main.py
 ```
 
+Beanchmark Results
+---
+The algorithm is evaluated on the LASA handwriting dataset and PC-GMM benchmark datasets. The LASA handwriting dataset contains a library of 30 human handwriting motions in 2D with single target, each containing 7 trajectories and totaling 7000 observations. The PC-GMM benchmark dataset consists of 15 motions characterized by highly non-linear patterns and more complex behaviors: 10 motions in 2D and 5 motions in 3D, with observations ranging from 800 to 3000 for each motion.
+
+
+
+
+Above is a preview for the part of LASA benchmark. For the complete benchmark results, please refer to the Appendix G. and Appendix H. in the following [link](https://arxiv.org/pdf/2309.02609.pdf).
+
 
 BibTeX
 ---
