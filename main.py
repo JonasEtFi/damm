@@ -33,12 +33,10 @@ damm_config ={
     "sigma_dir_0":    0.1,
     "min_threshold":  50
 }
-print(111111)
+
 damm = damm_class(damm_config)    
 damm.begin(Data)
-print(3333333)
 Priors, Mu, Sigma, assignment_arr = damm.evaluate()
-print(f"Mu: {Mu}, Priors: {Priors}. ass_arr {assignment_arr}")
 damm.plot()
 
 

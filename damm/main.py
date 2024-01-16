@@ -60,9 +60,7 @@ class damm:
         else:
             input_data  = f"{self.num}\n{self.dim}\n{' '.join(map(str, self.Data.flatten()))}\n{self.param}\n{' '.join(map(str, args_[0]))}"
 
-        print(f"cmdl args_ {command_line_args}")
         completed_process = subprocess.run(' '.join(command_line_args), input=input_data, text=True, shell=True)
-        print("stop")
         #store old data for incremental learning
         self.prev_data = data_
 
