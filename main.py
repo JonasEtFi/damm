@@ -2,7 +2,6 @@ import os
 import numpy as np
 
 from damm.main   import damm   as damm_class
-from ds_opt.main import ds_opt as dsopt_class
 from util import load_tools, plot_tools
 
 
@@ -56,8 +55,3 @@ ds_opt_config = {
 
 output_path  = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'output.json')
 
-ds_opt = dsopt_class(ds_opt_config, output_path)
-
-ds_opt.begin()
-ds_opt.evaluate()
-ds_opt.plot()
