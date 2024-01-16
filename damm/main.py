@@ -13,7 +13,7 @@ def write_json(data, path):
 
 class damm:
     def __init__(self, hyper_param_):
-
+        print("DAMM")
         self.file_path           = os.path.dirname(os.path.realpath(__file__))
         self.dir_path            = os.path.dirname(self.file_path)
         self.log_path            = os.path.join(self.file_path, "log", "")
@@ -60,8 +60,9 @@ class damm:
         else:
             input_data  = f"{self.num}\n{self.dim}\n{' '.join(map(str, self.Data.flatten()))}\n{self.param}\n{' '.join(map(str, args_[0]))}"
 
+        print(f"cmdl args_ {command_line_args}")
         completed_process = subprocess.run(' '.join(command_line_args), input=input_data, text=True, shell=True)
-        
+        print("stop")
         #store old data for incremental learning
         self.prev_data = data_
 
@@ -87,6 +88,7 @@ class damm:
 
         
     def evaluate(self, *args_):
+        
         print(self.Data.shape)
 
         # read binary output file and store assignment array
@@ -133,5 +135,6 @@ class damm:
 
         plot_tools.plot_results(self.Data, self.assignment_arr, self.base)
         plot_tools.plot_results(self.Data, self.reg_assignment_array, self.base)
+        plt.show()
 
             

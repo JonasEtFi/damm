@@ -9,8 +9,8 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 if(APPLE)
     message("Apple (macOS) detected")
     # change default compiler to llvm
-    set(CMAKE_C_COMPILER /opt/homebrew/opt/llvm/bin/clang)
-    set(CMAKE_CXX_COMPILER /opt/homebrew/opt/llvm/bin/clang++)
+    set(CMAKE_C_COMPILER /usr/local/opt/llvm/bin/clang)
+    set(CMAKE_CXX_COMPILER /usr/local/opt/llvm/bin/clang++)
     set(CMAKE_PREFIX_PATH /opt/homebrew/opt/libomp)
 endif()
 
