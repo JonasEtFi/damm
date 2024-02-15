@@ -1,0 +1,3 @@
+/Users/jonasfischer/damm/damm/build/CMakeFiles/main.dir
+/Users/jonasfischer/damm/damm/build/CMakeFiles/edit_cache.dir
+/Users/jonasfischer/damm/damm/build/CMakeFiles/rebuild_cache.dir
