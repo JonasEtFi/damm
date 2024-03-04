@@ -104,9 +104,11 @@ void DPMMDIR<dist_t>::sampleCoefficientsParameters()
 
   for (uint32_t kk=0; kk<K_; ++kk)  {
     boost::random::gamma_distribution<> gamma_(indexLists_[kk].size(), 1);
+    // std::cout << rndGen_ << std::endl;
     Pi(kk) = gamma_(rndGen_);
     parameters_.push_back(H_.posterior(x_(indexLists_[kk], all)));
     components_.push_back(parameters_[kk].sampleParameter());
+
   }
   Pi_ = Pi / Pi.sum();
 }

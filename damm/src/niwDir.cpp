@@ -99,7 +99,6 @@ NormalDir<T> NIWDIR<T>::sampleParameter()
   Matrix<T,Dynamic,1> meanDir(dim_);
   T covDir;
 
-
   LLT<Matrix<T,Dynamic,Dynamic> > lltObj(sigmaPos_);
   Matrix<T,Dynamic,Dynamic> cholFacotor = lltObj.matrixL();
 
@@ -107,11 +106,19 @@ NormalDir<T> NIWDIR<T>::sampleParameter()
   matrixA.setZero();
   boost::random::normal_distribution<> gauss_(0.0, 1.0);
   for (uint32_t i=0; i<dim_; ++i)  {
-    boost::random::chi_squared_distribution<> chiSq_(nu_-i);
+    if(i <= nu_){
+    boost::random::chi_squared_distribution<> chiSq_(nu_-i + 0.000000001);
     matrixA(i,i) = sqrt(chiSq_(rndGen_)); 
-    for (uint32_t j=i+1; j<dim_; ++j)
-      matrixA(j, i) = gauss_(rndGen_);
+    for (uint32_t j=i+1; j<dim_; ++j) {
+      matrixA(j, i) = gauss_(rndGen_); }
+    } else {
+      boost::random::chi_squared_distribution<> chiSq_(0.001);
+    matrixA(i,i) = sqrt(chiSq_(rndGen_)); 
+    for (uint32_t j=i+1; j<dim_; ++j) {
+      matrixA(j, i) = gauss_(rndGen_); }
+    }
   }
+  // std::cout << "33333333" << std::endl;
   covPos = matrixA.inverse()*cholFacotor;
   covPos = covPos.transpose()*covPos;
 

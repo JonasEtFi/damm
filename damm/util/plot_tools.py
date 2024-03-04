@@ -74,9 +74,9 @@ def plot_results(data, assignment_array, base):
         ax.xaxis.set_major_locator(MaxNLocator(nbins=5))
         ax.yaxis.set_major_locator(MaxNLocator(nbins=5))
         ax.zaxis.set_major_locator(MaxNLocator(nbins=5))
-        ax.xaxis.set_major_formatter(FormatStrFormatter('%.1f'))
-        ax.yaxis.set_major_formatter(FormatStrFormatter('%.1f'))
-        ax.zaxis.set_major_formatter(FormatStrFormatter('%.1f'))
+        # ax.xaxis.set_major_formatter(FormatStrFormatter('%.1f'))
+        # ax.yaxis.set_major_formatter(FormatStrFormatter('%.1f'))
+        # ax.zaxis.set_major_formatter(FormatStrFormatter('%.1f'))
         ax.xaxis.set_pane_color((1.0, 1.0, 1.0, 0.0))
         ax.yaxis.set_pane_color((1.0, 1.0, 1.0, 0.0))
         ax.zaxis.set_pane_color((1.0, 1.0, 1.0, 0.0))
@@ -89,6 +89,7 @@ def plot_results(data, assignment_array, base):
         ax.set_title('Vanilla GMM (position+velocity)',  fontsize = 24)
     
     # ax.set_title('PC-GMM',  fontsize = 24)
+    return Mu,Priors, Sigma, assignment_array
 
 
 

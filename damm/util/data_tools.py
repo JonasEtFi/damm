@@ -24,6 +24,7 @@ def extract_param(data, assignment_array):
     """
     N = data.shape[0]
     M = int(data.shape[1] / 2)
+    # print(f"Assarray{assignment_array}")
     K = assignment_array.max()+1
 
     Priors  = np.zeros((K, ))
@@ -99,15 +100,13 @@ def normalize_vel(data):
     M = int(data.shape[1]/2)
 
     vel_data = data[:, M:]
+    # print(f"Velocity: {vel_data}")
     vel_norm = np.linalg.norm(vel_data, axis=1)
-
     vel_data = vel_data[vel_norm!=0]
     pos_data = data[vel_norm!=0, 0:M]
     vel_norm = vel_norm[vel_norm!=0].reshape(-1, 1)
-
     normalized_vel_data = vel_data / vel_norm
     norm_data = np.hstack((pos_data, normalized_vel_data))
-
    
     return norm_data
 

@@ -29,7 +29,7 @@ int main(int argc, char **argv)
     boost::mt19937 rndGen(seed);
     
 
-    std::cout << "Hello Parallel World" << std::endl;
+    std::cout << "Hello Parallel World digga" << std::endl;
     po::options_description desc("Allowed options");
     desc.add_options()
         ("base"         , po::value<int>()->required()      , "Base type: 0 damm, 1 pos, 2 pos+dir")

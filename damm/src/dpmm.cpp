@@ -150,6 +150,7 @@ void DPMM<dist_t>::sampleCoefficientsParameters()
 
   #pragma omp parallel for num_threads(8) 
   for (uint32_t kk=0; kk<K_; ++kk)  {
+    // std::cout << indexLists_[kk].size()<< std::endl;
     boost::random::gamma_distribution<> gamma_(indexLists_[kk].size(), 1);
     Pi_(kk) = gamma_(rndGen_);
     parameters_[kk] = baseDist[kk].posterior(x_(indexLists_[kk], all));
@@ -217,7 +218,9 @@ void DPMM<dist_t>::sampleCoefficientsParameters(const vector<int> &indexList)
 
   #pragma omp parallel for num_threads(8) 
   for (uint32_t kk=0; kk<2; ++kk)  {
+    // std::cout << indexLists_[kk].size()<< std::endl;
     boost::random::gamma_distribution<> gamma_(indexLists_[kk].size(), 1);
+    
     Pi_(kk) = gamma_(rndGen_);
     parameters_[kk] = baseDist[kk].posterior(x_(indexLists_[kk], all));
     components_[kk] = parameters_[kk].sampleParameter();
@@ -316,6 +319,8 @@ double DPMM<dist_t>::logTargetRatio(const vector<int>  &indexList_i, const vecto
    */
 
   VectorXd Pi(2);
+  // std::cout << indexList_i.size()<< std::endl;
+  // std::cout << indexList_j.size()<< std::endl;
   boost::random::gamma_distribution<> gamma_i(indexList_i.size(), 1);
   boost::random::gamma_distribution<> gamma_j(indexList_j.size(), 1);
 

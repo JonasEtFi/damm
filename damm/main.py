@@ -12,27 +12,36 @@ def write_json(data, path):
 
 
 class damm:
-    def __init__(self, hyper_param_):
-        print("DAMM")
+    def __init__(self, hyper_param_, base=0, init=15, iterations=200, alpha=1):
+        """
+        Class for the DAMM implementation
+
+        Parameter
+        ---------
+        hyper_parama_: -
+        base: -
+        init: number of gaussians at start of the algorithm
+        iterations: number of iterations
+        alpha: split factor 
+        """
         self.file_path           = os.path.dirname(os.path.realpath(__file__))
         self.dir_path            = os.path.dirname(self.file_path)
         self.log_path            = os.path.join(self.file_path, "log", "")
-        
         # command-line arguments 
-        parser = argparse.ArgumentParser(
-                            prog = 'Directionality-aware Mixture Model',
-                            description = 'C++ Implementaion with Python Interface')
+        # parser = argparse.ArgumentParser(
+        #                     prog = 'Directionality-aware Mixture Model',
+        #                     description = 'C++ Implementaion with Python Interface')
 
-        parser.add_argument('-b', '--base' , type=int, default=0  , help='0 damm; 1 position; 2 position+directional')
-        parser.add_argument('-i', '--init' , type=int, default=15 , help='Number of initial clusters, 0 is one cluster per data; default=15')
-        parser.add_argument('-t', '--iter' , type=int, default=200, help='Number of iterations')
-        parser.add_argument('-a', '--alpha', type=float, default=1, help='Concentration Factor')
+        # parser.add_argument('-b', '--base' , type=int, default=0  , help='0 damm; 1 position; 2 position+directional')
+        # parser.add_argument('-i', '--init' , type=int, default=15 , help='Number of initial clusters, 0 is one cluster per data; default=15')
+        # parser.add_argument('-t', '--iter' , type=int, default=200, help='Number of iterations')
+        # parser.add_argument('-a', '--alpha', type=float, default=1, help='Concentration Factor') 
 
-        args = parser.parse_args()
-        self.base               = args.base
-        self.init               = args.init
-        self.iter               = args.iter
-        self.alpha              = args.alpha
+        # args = parser.parse_args()
+        self.base               =base
+        self.init               =init
+        self.iter               =iterations
+        self.alpha              =alpha
 
         # load hyperparameters
         mu_0, sigma_0, nu_0, kappa_0, sigma_dir_0, self.min_num = hyper_param_.values()
@@ -42,11 +51,11 @@ class damm:
     def begin(self, data_, *args_):
 
         # load and process data
+
         self.Data = data_tools.normalize_vel(data_)
+
         self.num, self.dim = self.Data.shape  
 
-
-        print(self.num)
         # perform damm 
         command_line_args = ['time ' + os.path.join(self.file_path, "main"),
                             '--base {}'.format(self.base),
@@ -131,8 +140,9 @@ class damm:
 
     def plot(self):
 
-        plot_tools.plot_results(self.Data, self.assignment_arr, self.base)
+        Mu, pi, cov, ass_arr = plot_tools.plot_results(self.Data, self.assignment_arr, self.base)
         plot_tools.plot_results(self.Data, self.reg_assignment_array, self.base)
         plt.show()
+        return Mu, pi, cov, ass_arr
 
             

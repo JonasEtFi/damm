@@ -18,9 +18,10 @@ input_opt = input(input_message)
 
 # process and plot input data
 input_data = load_tools.load_data(int(input_opt))
+# print(f"INPUT DATA {(input_data[0][0])}")
 Data, Data_sh, att, x0_all, dt, _, traj_length = load_tools.processDataStructure(input_data)
 # plot_tools.plot_reference_trajectories_DS(Data, att, 100, 20)
-
+# print(f"ATTRACTOR Shape_ {np.shape(att)}")
 
 # damm clustering
 dim = Data.shape[0]
@@ -34,7 +35,7 @@ damm_config ={
     "min_threshold":  50
 }
 
-damm = damm_class(damm_config)    
+damm = damm_class(damm_config)  
 damm.begin(Data)
 Priors, Mu, Sigma, assignment_arr = damm.evaluate()
 damm.plot()

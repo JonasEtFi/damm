@@ -122,7 +122,7 @@ Normal<T> NIW<T>::sampleParameter()
   for (uint32_t i=0; i<dim_; ++i)
     sampledMean[i] = gauss_(rndGen_);
   sampledMean =  lowerMatrix * sampledMean + mu_;
-
+  
   return Normal<T>(sampledMean, sampledCov, rndGen_);
 };
 
